@@ -1,0 +1,125 @@
+@use "../../_mixin.scss" as m;
+
+.checkout {
+  display: block;
+
+  .checkout-container {
+    display: flex;
+    padding: 10px;
+  }
+  .checkout-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+
+    .checkout-name {
+      display: flex;
+      width: 100%;
+
+      .checkout-name-children {
+        width: 100%;
+        margin-right: 15px;
+      }
+    }
+
+    .checkout-label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .checkout-input {
+      height: 40px;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 2px 1px #007bff;
+      }
+    }
+
+    .checkout-select {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 2px 1px #007bff;
+      }
+    }
+  }
+
+  .checkout-total {
+    width: 45%;
+    margin-left: 10%;
+
+    .checkout-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 222px;
+      padding: 10px;
+      background: transparent;
+      color: black;
+      border: 1px solid #000;
+      border-radius: 15px;
+      font-size: 20px;
+      margin: auto;
+      margin-top: 18px;
+    }
+
+    .totals-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0px 30px;
+
+      .totals {
+        border: none;
+        padding: 10px 0px;
+        text-align: right;
+        font-weight: bold;
+
+        span {
+          text-align: right;
+        }
+      }
+    }
+
+    .payment {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #000;
+      fieldset {
+        label {
+          display: inline-block;
+          margin-right: 10px;
+        }
+        input[type="radio"] {
+          margin-right: 5px;
+        }
+        p {
+          margin: 10px 0;
+        }
+      }
+
+      .payment-description {
+        line-height: 30px;
+      }
+    }
+  }
+}
