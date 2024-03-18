@@ -180,6 +180,55 @@ function Products() {
               {/*End .product-item*/}
             </div>
           </div>
+          <div
+            className="btn"
+            style={{ marginTop: 60, marginLeft: 550, display: "flex", gap: 15 }}
+          >
+            <button
+              style={{
+                background: "#b88e2f",
+                color: "#fff",
+                borderRadius: 6,
+                border: "1x solid #fff",
+                padding: "10px 15px",
+              }}
+            >
+              1
+            </button>
+            <button
+              style={{
+                background: "#f9f1e7",
+                color: "#000",
+                borderRadius: 6,
+                border: "1px solid #fff",
+                padding: "10px 15px",
+              }}
+            >
+              2
+            </button>
+            <button
+              style={{
+                background: "#f9f1e7",
+                color: "#000",
+                borderRadius: 6,
+                border: "1px solid #fff",
+                padding: "10px 15px",
+              }}
+            >
+              3
+            </button>
+            <button
+              style={{
+                background: "#f9f1e7",
+                color: "#000",
+                borderRadius: 6,
+                border: "1px solid #fff",
+                padding: "10px 15px",
+              }}
+            >
+              next
+            </button>
+          </div>
         </div>
       </section>
       ;
