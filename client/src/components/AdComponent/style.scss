@@ -1,0 +1,187 @@
+@import "../../styles/theme.scss";
+@import "../../styles/mixin.scss";
+
+main {
+  position: absolute;
+  right: 0;
+  width: 75%;
+  height: 100%;
+
+  .header-profile {
+    display: flex;
+    justify-content: start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $bgForm;
+
+    h2 {
+      color: $white;
+      padding-left: 12px;
+    }
+  }
+
+  .footer-profile {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: $black;
+    background-color: $bgForm;
+    padding: 10px 0px;
+    padding-left: 12rem;
+  }
+
+  .overview-profile {
+    margin-top: 100px;
+    padding-left: 10px;
+
+    img {
+      margin-top: 15px;
+    }
+
+    h1 {
+      color: $black;
+      font-size: 36px;
+    }
+
+    p {
+      color: $black;
+      margin: 14px 0px;
+      font-size: 17px;
+    }
+
+    table {
+      width: 95%;
+
+      thead {
+        td {
+          padding: 13px;
+        }
+      }
+
+      tbody {
+        td {
+          padding: 13px;
+        }
+
+        button {
+          background-color: $red;
+          color: $white;
+          width: 80px;
+          height: 40px;
+          border: none;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $blue;
+          color: $white;
+          text-decoration: none;
+          width: 80px;
+          height: 40px;
+          border: none;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .overview-profile-btn {
+      @include button-style($blue, $black);
+      cursor: pointer;
+      text-transform: capitalize;
+
+      &::before {
+        @include button-style-before($red);
+      }
+
+      &:hover::before {
+        width: 120%;
+        height: 120%;
+      }
+    }
+
+    .overview-input {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+
+      input {
+        margin: 14px 0px;
+        height: 40px;
+        padding-left: 15px;
+        font-size: 15px;
+        background-color: $bgForm;
+        border: none;
+        color: $black;
+        border-radius: 5px;
+
+        &::placeholder {
+          color: $black;
+        }
+
+        &:focus {
+          outline: none;
+          border: 2px solid $blue;
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  z-index: 10;
+  background-color: $bgForm;
+
+  .sidebar-logo {
+    border-bottom: 1px solid $headingColor;
+    padding: 20px 30px;
+
+    img {
+      width: 200px;
+      height: auto;
+    }
+  }
+
+  .sidebar-profile {
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid $headingColor;
+
+    p {
+      color: $blue;
+      padding-left: 12px;
+    }
+  }
+
+  .sidebar-menu {
+    padding: 20px 30px;
+    border-bottom: 1px solid $headingColor;
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0px;
+      color: $blue;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: $blue;
+      }
+
+      .sidebar-item-text {
+        padding-left: 10px;
+      }
+    }
+  }
+}
