@@ -1,8 +1,33 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./SideBar";
 import "./style.scss";
+import axios from "axios";
 
 function Products() {
+  const [data, setData] = useState<any>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/products/");
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+
+  const handleDelete = async (id: any) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/products/${id}`);
+      data.filter((item: any) => item?.id !== id);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <SideBar />
@@ -11,25 +36,65 @@ function Products() {
           <h2>Dashboard</h2>
         </header>
         <div className="overview-profile">
-          <table border={1} style={{ borderCollapse: "collapse" }}>
-            <thead>
-              <td>Id</td>
-              <td>Tên sản phẩm</td>
-              <td>Giá tiền</td>
-              <td>Chức năng</td>
-            </thead>
-            <tbody>
-              <td>1</td>
-              <td>Giày đen</td>
-              <td>10000</td>
-              <td style={{ width: "200px" }}>
-                <div style={{ display: "flex" }}>
-                  <button>Xóa</button>
-                  <Link to={``}>Sửa</Link>
-                </div>
-              </td>
-            </tbody>
-          </table>
+          <div className="table">
+            <table border={1} style={{ borderCollapse: "collapse" }}>
+              <thead>
+                <tr>
+                  <td>Id</td>
+                  <td>Tên sản phẩm</td>
+                  <td>Giá tiền</td>
+                  <td>Ảnh</td>
+                  <td>Mô tả</td>
+                  <td>Chức năng</td>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item: any, index: number) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{item?.name}</td>
+                    <td>{item?.price}</td>
+                    <td>
+                      <img src={item?.img} alt="" width={100} />
+                    </td>
+                    <td>{item?.description}</td>
+                    <td style={{ width: "200px" }}>
+                      <div style={{ display: "flex" }}>
+                        <button
+                          style={{ cursor: "pointer" }}
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          Xóa
+                        </button>
+                        <Link to={`/admin/edit/${item._id}`}>Sửa</Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 100,
+              height: 50,
+              marginTop: "10px",
+              backgroundColor: "#000",
+            }}
+          >
+            <Link
+              to={`/admin/add`}
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              Add
+            </Link>
+          </div>
         </div>
         <footer className="footer-profile">
           © FlixTV.template, 2021. Create by Dmitry Volkov

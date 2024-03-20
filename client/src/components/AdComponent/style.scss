@@ -52,39 +52,75 @@ main {
       font-size: 17px;
     }
 
-    table {
-      width: 95%;
+    form {
+      display: flex;
+      flex-direction: column;
 
-      thead {
-        td {
-          padding: 13px;
+      .overview-input {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        input {
+          margin: 14px 0px;
+          height: 40px;
+          padding-left: 15px;
+          font-size: 15px;
+          background-color: $white;
+          border: 2px solid $blue;
+          color: $black;
+          border-radius: 5px;
+
+          &::placeholder {
+            color: $black;
+          }
+
+          &:focus {
+            outline: $blue;
+            border: 2px solid $blue;
+          }
         }
       }
+    }
 
-      tbody {
-        td {
-          padding: 13px;
+    .table {
+      height: 450px;
+      overflow-y: scroll;
+
+      table {
+        width: 100%;
+
+        thead {
+          td {
+            padding: 13px;
+          }
         }
 
-        button {
-          background-color: $red;
-          color: $white;
-          width: 80px;
-          height: 40px;
-          border: none;
-        }
+        tbody {
+          td {
+            padding: 13px;
+          }
 
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: $blue;
-          color: $white;
-          text-decoration: none;
-          width: 80px;
-          height: 40px;
-          border: none;
-          margin-left: 10px;
+          button {
+            background-color: $red;
+            color: $white;
+            width: 80px;
+            height: 40px;
+            border: none;
+          }
+
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $blue;
+            color: $white;
+            text-decoration: none;
+            width: 80px;
+            height: 40px;
+            border: none;
+            margin-left: 10px;
+          }
         }
       }
     }
@@ -101,32 +137,6 @@ main {
       &:hover::before {
         width: 120%;
         height: 120%;
-      }
-    }
-
-    .overview-input {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-
-      input {
-        margin: 14px 0px;
-        height: 40px;
-        padding-left: 15px;
-        font-size: 15px;
-        background-color: $bgForm;
-        border: none;
-        color: $black;
-        border-radius: 5px;
-
-        &::placeholder {
-          color: $black;
-        }
-
-        &:focus {
-          outline: none;
-          border: 2px solid $blue;
-        }
       }
     }
   }

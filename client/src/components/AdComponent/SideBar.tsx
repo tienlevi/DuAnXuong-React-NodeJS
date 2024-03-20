@@ -28,7 +28,7 @@ function SideBar() {
               <p>Trang chủ</p>
             </div>
           </div>
-          <Link to="/" className="sidebar-item">
+          <Link to="/admin/products" className="sidebar-item">
             <div className="sidebar-item-icon">
               <SettingsIcon />
             </div>

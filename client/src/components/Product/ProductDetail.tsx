@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./style.scss";
 import "../../_mixin.scss";
 
-function ProductDetail() {
+function ProductDetail({ id }: any) {
+  const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/products/${id}`
+        );
+        setData(response.data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
   return (
     <div className="product-container">
       <div className="product-image">
@@ -9,8 +27,8 @@ function ProductDetail() {
         <img src="https://picsum.photos/id/10/1440/500" alt="Product Image" />
       </div>
       <div className="product-info">
-        <h2 className="product-name">Asgaard Sofa</h2>
-        <p className="product-price">25.000.000₫</p>
+        <h2 className="product-name">{data?.name}</h2>
+        <p className="product-price">{data?.price}</p>
         <p className="product-reviews">5 Customer Reviews</p>
         <div className="product-description">
           Setting the bar as one of the loudest speakers in its class, the
