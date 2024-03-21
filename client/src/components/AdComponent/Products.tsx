@@ -20,12 +20,16 @@ function Products() {
   }, []);
 
   const handleDelete = async (id: any) => {
-    try {
-      await axios.delete(`http://localhost:8080/api/products/${id}`);
-      data.filter((item: any) => item?.id !== id);
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
+    const confirm = window.confirm("Bạn có muốn xóa không ?");
+    if (confirm) {
+      try {
+        await axios.delete(`http://localhost:8080/api/products/${id}`);
+        data.filter((item: any) => item?.id !== id);
+        alert("Xóa thàng công");
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (

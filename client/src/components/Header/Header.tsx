@@ -40,7 +40,9 @@ function Header() {
           <div className="header-items">
             <div className="header-item-user">
               <span>
-                <img src="./assets/icons/1.svg" />
+                <Link to={`/login`}>
+                  <img src="./assets/icons/1.svg" />
+                </Link>
               </span>
             </div>
             <div className="header-item-user">
