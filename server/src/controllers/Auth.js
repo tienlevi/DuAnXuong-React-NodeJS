@@ -2,11 +2,9 @@ import UserSchema from "../model/User.js";
 import Joi from "joi";
 
 export const SignUpSchema = Joi.object({
-  name: Joi.string().name(3).max(30).required().messages({
+  name: Joi.string().required().messages({
     "any.required": "name là bắt buộc",
     "string.empty": "trường name không được để trống",
-    "string.min": "Trường name ít nhất 3 ký tự",
-    "string.max": "Trường name tốt đa 30 ký tự",
   }),
   email: Joi.string().email().required().messages({
     "string.email": "Không đúng định dạng email",
