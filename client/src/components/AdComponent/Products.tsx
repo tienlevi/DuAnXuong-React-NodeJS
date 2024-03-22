@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./SideBar";
 import "./style.scss";
-import axios from "axios";
+import { getProducts, deleteProduct } from "../../api/product";
 
 function Products() {
   const [data, setData] = useState<any>([]);
@@ -10,7 +10,7 @@ function Products() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/products/");
+        const response: any = await getProducts();
         setData(response.data);
       } catch (error) {
         console.log(error);
@@ -19,11 +19,11 @@ function Products() {
     getData();
   }, []);
 
-  const handleDelete = async (id: any) => {
+  const handleDelete = async (id: string) => {
     const confirm = window.confirm("Bạn có muốn xóa không ?");
     if (confirm) {
       try {
-        await axios.delete(`http://localhost:8080/api/products/${id}`);
+        await deleteProduct(id);
         data.filter((item: any) => item?.id !== id);
         alert("Xóa thàng công");
         window.location.reload();

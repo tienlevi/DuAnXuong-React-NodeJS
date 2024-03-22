@@ -29,9 +29,26 @@ function Add({ onAdd }: Props) {
               <label htmlFor="">Tên sản phẩm</label>
               <input type="text" {...register("name", { required: true })} />
             </div>
+
             <div className="overview-input">
               <label htmlFor="">Giá tiền</label>
-              <input type="text" {...register("price", { required: true })} />
+              <input
+                type="text"
+                {...register("price", {
+                  required: true,
+                  validate: (value) => !isNaN(value),
+                })}
+              />
+            </div>
+            <div className="overview-input">
+              <label htmlFor="">Giảm giá</label>
+              <input
+                type="text"
+                {...register("discount", {
+                  required: true,
+                  validate: (value) => !isNaN(value),
+                })}
+              />
             </div>
             <div className="overview-input">
               <label htmlFor="">Ảnh</label>

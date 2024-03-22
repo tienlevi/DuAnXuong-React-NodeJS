@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { addProduct, editProduct } from "../api/product";
 import Add from "../components/AdComponent/Add";
 import Edit from "../components/AdComponent/Edit";
 import Overview from "../components/AdComponent/Overview";
@@ -19,7 +19,7 @@ export const AddPage = () => {
 
   const handleAdd = async (data: any) => {
     try {
-      await axios.post("http://localhost:8080/api/products/", data);
+      await addProduct(data);
       setList([...list, data]);
       toast.success("Thêm thành công");
     } catch (error) {
@@ -41,7 +41,7 @@ export const EditPage = () => {
 
   const handleEdit = async (id: string, data: any) => {
     try {
-      await axios.put(`http://localhost:8080/api/products/${id}`, data);
+      await editProduct(id, data);
       setList(list.map((item: any) => (item.id === data.id ? data : item)));
       toast.success("Sửa thành công");
     } catch (error) {
