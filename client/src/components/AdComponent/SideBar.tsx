@@ -20,14 +20,14 @@ function SideBar() {
           <p>Admin</p>
         </div>
         <div className="sidebar-menu">
-          <div className="sidebar-item">
+          <Link to="/admin" className="sidebar-item">
             <div className="sidebar-item-icon">
               <HomeIcon />
             </div>
             <div className="sidebar-item-text">
               <p>Trang chủ</p>
             </div>
-          </div>
+          </Link>
           <Link to="/admin/products" className="sidebar-item">
             <div className="sidebar-item-icon">
               <SettingsIcon />

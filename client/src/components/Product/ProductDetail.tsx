@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./style.scss";
 import "../../_mixin.scss";
+import { IProduct } from "../../interface";
 
 function ProductDetail({ id }: any) {
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<IProduct>();
 
   useEffect(() => {
     const getData = async () => {
@@ -30,11 +31,7 @@ function ProductDetail({ id }: any) {
         <h2 className="product-name">{data?.name}</h2>
         <p className="product-price">{data?.price}</p>
         <p className="product-reviews">5 Customer Reviews</p>
-        <div className="product-description">
-          Setting the bar as one of the loudest speakers in its class, the
-          Kilburn is a compact, stout-hearted hero with a well-balanced audio
-          which boasts a clear midrange and extended lights for a sound.
-        </div>
+        <div className="product-description">{data?.description}</div>
         <div className="product-size-color">
           <p>
             Size: <span className="select">L</span>

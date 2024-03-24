@@ -16,8 +16,7 @@ function Home() {
     const getData = async () => {
       try {
         const response: any = await getProducts();
-        // setProducts(response.data);
-        console.log(response);
+        setProducts(response.data);
       } catch (error) {
         console.log(error);
       }

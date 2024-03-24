@@ -4,6 +4,8 @@ import "./style.scss";
 import "../../_mixin.scss";
 
 function Products({ products }: { products: IProduct[] }) {
+  console.log(products);
+
   return (
     <div>
       <section className="news">
@@ -16,16 +18,13 @@ function Products({ products }: { products: IProduct[] }) {
               {products.map((item: IProduct, index: number) => (
                 <div className="product-item" key={index}>
                   <div className="product-image">
-                    <img
-                      src="https://picsum.photos/id/10/300/300"
-                      className="product__thumbnail"
-                    />
+                    <img src={item.img} className="product__thumbnail" />
                     <span className="product-sale">30%</span>
                   </div>
                   <div className="product-info">
                     <h3 className="product__name">
                       <Link to="/" className="product__link">
-                        Syltherine
+                        {item.name}
                       </Link>
                     </h3>
                     <Link to="/" className="product__category">
@@ -39,7 +38,7 @@ function Products({ products }: { products: IProduct[] }) {
                   <div className="product-actions">
                     <button className="btn product-action__quickview">
                       <Link
-                        to="/detail"
+                        to={`/detail/${item._id}`}
                         style={{ textDecoration: "none", color: "#000" }}
                       >
                         Quick View

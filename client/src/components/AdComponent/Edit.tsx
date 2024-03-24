@@ -1,8 +1,8 @@
-import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SideBar from "./SideBar";
 import { useEffect } from "react";
+import { getProductById } from "../../api/product";
 
 interface Props {
   onEdit: (id: string, data: any) => void;
@@ -21,10 +21,9 @@ function Edit({ onEdit }: Props) {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/api/products/${id}`
-        );
+        const response: any = await getProductById(id);
         reset(response.data);
+        // console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -45,9 +44,26 @@ function Edit({ onEdit }: Props) {
               <label htmlFor="">Tên sản phẩm</label>
               <input type="text" {...register("name", { required: true })} />
             </div>
+
             <div className="overview-input">
               <label htmlFor="">Giá tiền</label>
-              <input type="text" {...register("price", { required: true })} />
+              <input
+                type="text"
+                {...register("price", {
+                  required: true,
+                  validate: (value) => !isNaN(value),
+                })}
+              />
+            </div>
+            <div className="overview-input">
+              <label htmlFor="">Giảm giá</label>
+              <input
+                type="text"
+                {...register("discount", {
+                  required: true,
+                  validate: (value) => !isNaN(value),
+                })}
+              />
             </div>
             <div className="overview-input">
               <label htmlFor="">Ảnh</label>
