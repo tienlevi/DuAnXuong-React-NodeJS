@@ -21,6 +21,9 @@ export const SignUpSchema = Joi.object({
     "string.empty": "Mật khẩu không được để trống",
     "any.required": "Mật khẩu là bắt buộc",
   }),
+  avatar: Joi.string().uri().messages({
+    "string.uri": "Trường Avatar phải là đường dẫn hợp lệ",
+  }),
 });
 
 export const SignUp = async (req, res) => {
