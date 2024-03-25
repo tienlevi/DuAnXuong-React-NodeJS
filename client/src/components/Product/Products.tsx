@@ -38,7 +38,7 @@ function Products({ products }: { products: IProduct[] }) {
                   <div className="product-actions">
                     <button className="btn product-action__quickview">
                       <Link
-                        to={`/detail/${item._id}`}
+                        to={`/detail/${item?._id}`}
                         style={{ textDecoration: "none", color: "#000" }}
                       >
                         Quick View

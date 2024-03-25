@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IProduct } from "../interface";
-import { getProducts } from "../api/product";
+import { getProducts } from "../config/product";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Banner from "../components/Banner/Banner";

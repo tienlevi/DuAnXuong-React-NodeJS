@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addProduct, editProduct } from "../api/product";
+import { addProduct, editProduct } from "../config/product";
 import Add from "../components/AdComponent/Add";
 import Edit from "../components/AdComponent/Edit";
 import Overview from "../components/AdComponent/Overview";

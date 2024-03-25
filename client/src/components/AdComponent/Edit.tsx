@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SideBar from "./SideBar";
 import { useEffect } from "react";
-import { getProductById } from "../../api/product";
+import { getProductById } from "../../config/product";
 
 interface Props {
   onEdit: (id: string, data: any) => void;

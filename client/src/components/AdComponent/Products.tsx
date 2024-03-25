@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./SideBar";
 import "./style.scss";
-import { getProducts, deleteProduct } from "../../api/product";
+import { getProducts, deleteProduct } from "../../config/product";
 
 function Products() {
   const [data, setData] = useState<any>([]);
