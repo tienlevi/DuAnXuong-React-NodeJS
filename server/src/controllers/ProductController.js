@@ -20,7 +20,8 @@ export const getProductById = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   try {
-    const data = await Product(req.body).save();
+    const data = new Product(req.body);
+    await data.save();
     res.status(200).json(data);
   } catch (error) {
     console.log(error);

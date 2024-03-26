@@ -5,7 +5,6 @@ const productSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      lowercase: true,
     },
     slug: {
       type: String,
@@ -14,7 +13,7 @@ const productSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
+      // required: true,
     },
     price: {
       type: Number,

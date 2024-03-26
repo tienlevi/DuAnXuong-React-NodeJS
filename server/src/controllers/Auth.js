@@ -26,6 +26,19 @@ export const SignUpSchema = Joi.object({
   }),
 });
 
+export const SignInSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    "string.email": "Không đúng định dạng email",
+    "string.empty": "Bắt buộc nhập",
+    "any.required": "email không được để trống",
+  }),
+  password: Joi.string().min(6).required().messages({
+    "password.empty": "mật khẩu không được để trống",
+    "password.min": "Mật khẩu tối thiểu 6 ký tự",
+    "any.required": "mật khẩu không được để trống",
+  }),
+});
+
 export const SignUp = async (req, res) => {
   try {
     const { name, email, password, confirmPassword } = req.body;
@@ -46,3 +59,7 @@ export const SignUp = async (req, res) => {
     console.log(error);
   }
 };
+
+export const SignIn = async (req, res) => {};
+
+export const Logout = async (req, res) => {};
