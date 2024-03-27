@@ -1,55 +1,49 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import SideBar from "./SideBar";
 import { useEffect } from "react";
-import { getProductById } from "../../config/product";
+import { useParams } from "react-router-dom";
+import useProductMutation from "../../hooks/useProductMutation";
+import useProductQueryId from "../../hooks/useProductQueryId";
+import SideBar from "./SideBar";
 
-interface Props {
-  onEdit: (id: string, data: any) => void;
-}
-
-function Edit({ onEdit }: Props) {
+function Edit() {
   const { id }: any = useParams();
-  const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm();
-
-  const onSubmit = (data: any) => {
-    onEdit(id, data);
-    navigate("/admin/products");
-  };
+  const { data }: any = useProductQueryId(id);
+  const { form, onSubmit, isPending } = useProductMutation({
+    action: "Edit",
+  });
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response: any = await getProductById(id);
-        reset(response.data);
-        // console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
+    form.reset(data);
+  }, [data, form]);
+
   return (
     <>
+      <header className="header-profile">
+        <h2>Dashboard</h2>
+      </header>
       <SideBar />
       <main>
-        <header className="header-profile">
-          <h2>Dashboard</h2>
-        </header>
         <div className="overview-profile">
           <h1>Sửa sản phẩm</h1>
-          <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <form action="" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="overview-input">
               <label htmlFor="">Tên sản phẩm</label>
-              <input type="text" {...register("name", { required: true })} />
+              <input
+                type="text"
+                {...form.register("name", { required: true })}
+              />
             </div>
-
+            <div className="overview-input">
+              <label htmlFor="">Danh mục</label>
+              <select id="" {...form.register("category", { required: true })}>
+                <option value="Áo">Áo</option>
+                <option value="Quần">Quần</option>
+              </select>
+            </div>
             <div className="overview-input">
               <label htmlFor="">Giá tiền</label>
               <input
                 type="text"
-                {...register("price", {
+                {...form.register("price", {
                   required: true,
                   validate: (value) => !isNaN(value),
                 })}
@@ -59,7 +53,7 @@ function Edit({ onEdit }: Props) {
               <label htmlFor="">Giảm giá</label>
               <input
                 type="text"
-                {...register("discount", {
+                {...form.register("discount", {
                   required: true,
                   validate: (value) => !isNaN(value),
                 })}
@@ -67,23 +61,31 @@ function Edit({ onEdit }: Props) {
             </div>
             <div className="overview-input">
               <label htmlFor="">Ảnh</label>
-              <input type="text" {...register("img", { required: true })} />
+              <input
+                type="text"
+                {...form.register("image", { required: true })}
+              />
             </div>
             <div className="overview-input">
               <label htmlFor="">Mô tả</label>
               <input
                 type="text"
-                {...register("description", { required: true })}
+                {...form.register("description", { required: true })}
               />
             </div>
             <div className="overview-input">
-              <input type="submit" value="Sửa" style={{ cursor: "pointer" }} />
+              {isPending ? (
+                "Dang cap nhat"
+              ) : (
+                <input
+                  type="submit"
+                  value="Sửa"
+                  style={{ cursor: "pointer" }}
+                />
+              )}
             </div>
           </form>
         </div>
-        <footer className="footer-profile">
-          © FlixTV.template, 2021. Create by Dmitry Volkov
-        </footer>
       </main>
     </>
   );

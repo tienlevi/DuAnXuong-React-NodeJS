@@ -1,44 +1,24 @@
-import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import useProductQuery from "../../hooks/useProductQuery";
+import useProductMutation from "../../hooks/useProductMutation";
 import SideBar from "./SideBar";
 import "./style.scss";
-import { getProducts, deleteProduct } from "../../config/product";
+import { IProduct } from "../../interface";
 
 function Products() {
-  const [data, setData] = useState<any>([]);
+  const { data, isLoading } = useProductQuery();
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response: any = await getProducts();
-        setData(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
+  const { mutate } = useProductMutation({ action: "Delete" });
 
-  const handleDelete = async (id: string) => {
-    const confirm = window.confirm("Bạn có muốn xóa không ?");
-    if (confirm) {
-      try {
-        await deleteProduct(id);
-        data.filter((item: any) => item?.id !== id);
-        alert("Xóa thàng công");
-        window.location.reload();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  if (isLoading) return <p>Loading</p>;
+
   return (
     <>
+      <header className="header-profile">
+        <h2>Dashboard</h2>
+      </header>
       <SideBar />
       <main>
-        <header className="header-profile">
-          <h2>Dashboard</h2>
-        </header>
         <div className="overview-profile">
           <div className="table">
             <table border={1} style={{ borderCollapse: "collapse" }}>
@@ -53,20 +33,20 @@ function Products() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item: any, index: number) => (
+                {data?.map((item: IProduct, index: number) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{item?.name}</td>
                     <td>{item?.price}</td>
                     <td>
-                      <img src={item?.img} alt="" width={100} />
+                      <img src={item?.image} alt="" width={100} />
                     </td>
                     <td>{item?.description}</td>
                     <td style={{ width: "200px" }}>
                       <div style={{ display: "flex" }}>
                         <button
                           style={{ cursor: "pointer" }}
-                          onClick={() => handleDelete(item._id)}
+                          onClick={() => mutate(item)}
                         >
                           Xóa
                         </button>

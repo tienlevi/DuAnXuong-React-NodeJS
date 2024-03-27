@@ -7,11 +7,11 @@ function Overview() {
 
   return (
     <>
+      <header className="header-profile">
+        <h2>Dashboard</h2>
+      </header>
       <SideBar />
       <main>
-        <header className="header-profile">
-          <h2>Dashboard</h2>
-        </header>
         <div className="overview-profile">
           <h1>Trang chủ</h1>
         </div>

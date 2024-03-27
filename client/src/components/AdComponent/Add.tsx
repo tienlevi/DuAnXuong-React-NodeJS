@@ -1,40 +1,38 @@
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import useProductMutation from "../../hooks/useProductMutation";
 import SideBar from "./SideBar";
 
-interface Props {
-  onAdd: (data: any) => void;
-}
+function Add() {
+  const { form, onSubmit, isPending } = useProductMutation({ action: "Add" });
 
-function Add({ onAdd }: Props) {
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = (data: any) => {
-    onAdd(data);
-    navigate("/admin/products");
-  };
   return (
     <>
+      <header className="header-profile">
+        <h2>Dashboard</h2>
+      </header>
       <SideBar />
       <main>
-        <header className="header-profile">
-          <h2>Dashboard</h2>
-        </header>
         <div className="overview-profile">
           <h1>Thêm sản phẩm</h1>
-          <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <form action="" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="overview-input">
               <label htmlFor="">Tên sản phẩm</label>
-              <input type="text" {...register("name", { required: true })} />
+              <input
+                type="text"
+                {...form.register("name", { required: true })}
+              />
             </div>
-
+            <div className="overview-input">
+              <label htmlFor="">Danh mục</label>
+              <select id="" {...form.register("category", { required: true })}>
+                <option value="Áo">Áo</option>
+                <option value="Quần">Quần</option>
+              </select>
+            </div>
             <div className="overview-input">
               <label htmlFor="">Giá tiền</label>
               <input
                 type="text"
-                {...register("price", {
+                {...form.register("price", {
                   required: true,
                   validate: (value) => !isNaN(value),
                 })}
@@ -44,7 +42,7 @@ function Add({ onAdd }: Props) {
               <label htmlFor="">Giảm giá</label>
               <input
                 type="text"
-                {...register("discount", {
+                {...form.register("discount", {
                   required: true,
                   validate: (value) => !isNaN(value),
                 })}
@@ -52,23 +50,31 @@ function Add({ onAdd }: Props) {
             </div>
             <div className="overview-input">
               <label htmlFor="">Ảnh</label>
-              <input type="text" {...register("img", { required: true })} />
+              <input
+                type="text"
+                {...form.register("image", { required: true })}
+              />
             </div>
             <div className="overview-input">
               <label htmlFor="">Mô tả</label>
               <input
                 type="text"
-                {...register("description", { required: true })}
+                {...form.register("description", { required: true })}
               />
             </div>
             <div className="overview-input">
-              <input type="submit" value="Thêm" style={{ cursor: "pointer" }} />
+              {isPending ? (
+                "Dang cap nhat"
+              ) : (
+                <input
+                  type="submit"
+                  value="Thêm"
+                  style={{ cursor: "pointer" }}
+                />
+              )}
             </div>
           </form>
         </div>
-        <footer className="footer-profile">
-          © FlixTV.template, 2021. Create by Dmitry Volkov
-        </footer>
       </main>
     </>
   );

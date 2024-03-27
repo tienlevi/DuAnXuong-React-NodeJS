@@ -1,41 +1,30 @@
 @import "../../styles/theme.scss";
 @import "../../styles/mixin.scss";
 
+.header-profile {
+  display: flex;
+  justify-content: start;
+  position: fixed;
+  width: 100%;
+  margin-left: 300px;
+  top: 0;
+  background-color: $bgForm;
+
+  h2 {
+    color: $white;
+    padding-left: 12px;
+  }
+}
+
 main {
-  position: absolute;
-  right: 0;
-  width: 75%;
-  height: 100%;
-
-  .header-profile {
-    display: flex;
-    justify-content: start;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: $bgForm;
-
-    h2 {
-      color: $white;
-      padding-left: 12px;
-    }
-  }
-
-  .footer-profile {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: $black;
-    background-color: $bgForm;
-    padding: 10px 0px;
-    padding-left: 12rem;
-  }
+  margin-left: 300px;
+  margin-top: 80px;
+  padding: 0px 10px;
 
   .overview-profile {
-    margin-top: 100px;
-    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
     img {
       margin-top: 15px;
@@ -59,7 +48,7 @@ main {
       .overview-input {
         display: flex;
         flex-direction: column;
-        width: 50%;
+        width: 100%;
 
         input {
           margin: 14px 0px;
@@ -85,7 +74,6 @@ main {
 
     .table {
       height: 450px;
-      overflow-y: scroll;
 
       table {
         width: 100%;
@@ -143,11 +131,13 @@ main {
 }
 
 .sidebar {
-  position: absolute;
+  display: block;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 25%;
-  height: 100%;
+  bottom: 0;
+  width: 300px;
+  // height: 100%;
   z-index: 10;
   background-color: $bgForm;
 
