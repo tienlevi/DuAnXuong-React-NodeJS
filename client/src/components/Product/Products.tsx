@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../interface";
+import useProductQuery from "../../hooks/useProductQuery";
+import useProductMutation from "../../hooks/useProductMutation";
 import "./style.scss";
 import "../../_mixin.scss";
 
-function Products({ products }: { products: IProduct[] }) {
-  console.log(products);
+function Products() {
+  const { data, isLoading } = useProductQuery();
+
+  const { mutate } = useProductMutation({ action: "Delete" });
+
+  if (isLoading) return <p>Loading</p>;
 
   return (
     <div>
@@ -15,10 +21,10 @@ function Products({ products }: { products: IProduct[] }) {
           </div>
           <div className="section-body">
             <div className="product-list">
-              {products.map((item: IProduct, index: number) => (
+              {data.map((item: IProduct, index: number) => (
                 <div className="product-item" key={index}>
                   <div className="product-image">
-                    <img src={item.img} className="product__thumbnail" />
+                    <img src={item?.image} className="product__thumbnail" />
                     <span className="product-sale">30%</span>
                   </div>
                   <div className="product-info">

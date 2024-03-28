@@ -11,9 +11,8 @@ const productSchema = new mongoose.Schema(
       unique: true,
     },
     category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-      // required: true,
+      type: String,
+      required: true,
     },
     price: {
       type: Number,
@@ -33,7 +32,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    countInStock: {
+    quanlity: {
       type: Number,
       default: 0,
     },

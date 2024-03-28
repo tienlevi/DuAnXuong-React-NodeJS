@@ -80,9 +80,6 @@ function Products() {
             </Link>
           </div>
         </div>
-        <footer className="footer-profile">
-          © FlixTV.template, 2021. Create by Dmitry Volkov
-        </footer>
       </main>
     </>
   );
