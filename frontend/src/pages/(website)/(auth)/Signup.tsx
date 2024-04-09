@@ -21,7 +21,7 @@ const signUpSchema = Joi.object({
 
 const SignUp = () => {
     const { toast } = useToast();
-    const [user, setUser] = useLocalStorage("user", {});
+    const [, setUser] = useLocalStorage("user", {});
     const {
         register,
         handleSubmit,

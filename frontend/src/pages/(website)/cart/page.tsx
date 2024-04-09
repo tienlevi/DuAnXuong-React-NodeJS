@@ -1,10 +1,9 @@
 import useCart from "@/common/hooks/useCart";
 import { Button } from "@/components/ui/button";
-import { ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-    const { data, mutate, handleQuantityChange, calculateTotal } = useCart();
+    const { data, mutate, calculateTotal } = useCart();
 
     return (
         <div className="container">

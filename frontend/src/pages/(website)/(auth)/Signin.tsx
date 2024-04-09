@@ -19,7 +19,7 @@ const signinSchema = Joi.object({
 
 const Signin = () => {
     const { toast } = useToast();
-    const [user, setUser] = useLocalStorage("user", {});
+    const [, setUser] = useLocalStorage("user", {});
     const {
         register,
         handleSubmit,

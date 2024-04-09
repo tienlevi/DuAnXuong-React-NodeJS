@@ -19,26 +19,10 @@ import columns from "./column";
 import DataTable from "./DataTable";
 import FooterTable from "./FooterTable";
 import HeaderTable from "./HeaderTable";
-import { useMutation } from "@tanstack/react-query";
-import { deleteProduct } from "@/services/product";
-import { useToast } from "@/components/ui/use-toast";
 
 const ProductList = () => {
     const { data, isLoading } = useProductQuery({ _expand: "category" });
 
-    const { toast } = useToast();
-    const mutation = useMutation({
-        mutationFn: async (id: string) => {
-            const response = await deleteProduct(id);
-            return response?.data;
-        },
-        onSuccess: () => {
-            toast({
-                title: "Xóa sản phẩm thành công",
-                variant: "success",
-            });
-        },
-    });
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(

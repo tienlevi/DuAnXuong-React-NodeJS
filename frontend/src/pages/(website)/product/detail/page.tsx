@@ -10,7 +10,7 @@ const DetailProduct = () => {
     const { id }: any = useParams();
     const { data } = useProductQueryId(id);
 
-    const [user, setUser] = useStorage("user", {}, localStorage);
+    const [user] = useStorage("user", {}, localStorage);
 
     const { toast } = useToast();
     const { mutate } = useMutation({

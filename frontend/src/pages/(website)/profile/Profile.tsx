@@ -1,9 +1,9 @@
 import { useLocalStorage } from "@/common/hooks/useStorage";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useLocalStorage("user", {});
+    const [user] = useLocalStorage("user", {});
     const handleLogout = () => {
         localStorage.removeItem("user");
         navigate("/");

@@ -1,13 +1,11 @@
 import useCart from "@/common/hooks/useCart";
 import { useLocalStorage } from "@/common/hooks/useStorage";
-import { IProduct } from "@/common/types/product";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,

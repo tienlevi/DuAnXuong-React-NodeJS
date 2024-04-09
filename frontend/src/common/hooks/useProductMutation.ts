@@ -1,28 +1,26 @@
 import { addProduct, editProduct, deleteProduct } from "@/services/product";
-import { joiResolver } from "@hookform/resolvers/joi";
+// import { joiResolver } from "@hookform/resolvers/joi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../types/product";
-import { useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
-import Joi from "joi";
 
 type useProductMutationProps = {
     action: "CREATE" | "DELETE" | "UPDATE";
     onSuccess?: () => void;
 };
 
-const ProductJoiSchema = Joi.object({
-    name: Joi.string().required(),
-    price: Joi.number().required(),
-    category: Joi.string(),
-    gallery: Joi.array().items(Joi.string()),
-    image: Joi.string(),
-    description: Joi.string(),
-    discount: Joi.number(),
-    featured: Joi.boolean(),
-    countInStock: Joi.number(),
-});
+// const ProductJoiSchema = Joi.object({
+//     name: Joi.string().required(),
+//     price: Joi.number().required(),
+//     category: Joi.string(),
+//     gallery: Joi.array().items(Joi.string()),
+//     image: Joi.string(),
+//     description: Joi.string(),
+//     discount: Joi.number(),
+//     featured: Joi.boolean(),
+//     countInStock: Joi.number(),
+// });
 
 const useProductMutation = ({ action, onSuccess }: useProductMutationProps) => {
     const queryClient = useQueryClient();

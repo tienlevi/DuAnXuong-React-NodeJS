@@ -3,8 +3,7 @@ import { CartIcon, Logo, SearchIcon, UserIcon, WishlistIcon } from "./icons";
 import { useLocalStorage } from "@/common/hooks/useStorage";
 
 const Header = () => {
-    const [user, setUser] = useLocalStorage("user", "");
-    console.log(user);
+    const [user] = useLocalStorage("user", "");
 
     return (
         <header className="header">

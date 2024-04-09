@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
 import { uploadFileCloudinary } from "@/common/lib/upload";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useProductQuery } from "@/common/hooks/useProductQuery";
 import useProductMutation from "@/common/hooks/useProductMutation";
@@ -32,7 +32,6 @@ const ProductAdd = () => {
 
     const [gallery, setGallery] = useState<string[]>([]);
     const [image, setImage] = useState<string>("");
-    const [category, setCategory] = useState<string>("");
 
     const { data } = useProductQuery({ id });
     // Lấy danh sách danh mục
