@@ -16,7 +16,7 @@ type ProductListProps = {
 
 const ProductList = ({ products }: ProductListProps) => {
     // const { totalPages } = pagination || { totalPages: 1 };
-    const [user, setUser] = useStorage("user", {}, localStorage);
+    const [user] = useStorage("user", {}, localStorage);
 
     const { toast } = useToast();
     const { mutate } = useMutation({
